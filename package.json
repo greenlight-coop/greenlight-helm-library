@@ -1,0 +1,25 @@
+{
+  "name": "greenlight-helm-library-chart",
+  "version": "0.1.0",
+  "description": "Reusable templates, etc. for inclusion in Helm charts",
+  "scripts": {
+    "lint": "failsafe noop",
+    "lint:helm": "helm lint .",
+    "noop": "node -e \"require('node-noop').noop\"",
+    "qc": "npm run lint && npm audit && npm test",
+    "test": "failsafe noop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenlight-coop/greenlight-helm-library-chart.git"
+  },
+  "author": "Green Light Software Cooperative",
+  "bugs": {
+    "url": "https://github.com/greenlight-coop/greenlight-helm-library-chart/issues"
+  },
+  "homepage": "https://github.com/greenlight-coop/greenlight-helm-library-chart#readme",
+  "devDependencies": {
+    "node-noop": "^1.0.0",
+    "npm-failsafe": "^0.4.3"
+  }
+}

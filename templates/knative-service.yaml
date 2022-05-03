@@ -1,0 +1,37 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: {{ include "service.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/min-scale: "1"
+      labels:
+        app.kubernetes.io/component: rest-service
+        app.kubernetes.io/part-of: greenlight-application
+        greenlightcoop.dev/access.worker: allow
+        {{- include "service.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ include "service.name" . }}
+        {{- with .Values.image }}
+        image: "{{.repository}}:{{ .tag }}{{- if (.digest) -}} @{{.digest}} {{- end -}}"
+        {{- end }}
+        env:
+        - name: DEBUG
+          value: "{{ .Values.global.debug }}"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+
