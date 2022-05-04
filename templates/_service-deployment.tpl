@@ -243,7 +243,7 @@ spec:
       restartPolicy: Never
 
 ---
-{{-- end }}
+{{- end -}}
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
@@ -309,4 +309,4 @@ spec:
           number: 80
         host: {{ include "service.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
     
-{{-- end }}
+{{- end -}}
