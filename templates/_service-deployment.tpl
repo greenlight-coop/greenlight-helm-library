@@ -243,7 +243,7 @@ spec:
       restartPolicy: Never
 
 ---
-{{- end -}}
+{{ end -}}
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
