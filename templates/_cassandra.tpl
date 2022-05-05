@@ -21,8 +21,18 @@ Generate the name of the Cassandra keyspace and role name.
 Retrieve the image identifier used to run Liquibase jobs.
 */}}
 {{- define "cassandra.liquibase.image" -}}
-{{- .Values.cassandra.liquibase.image | default "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe" }}
-{{- end }}
+  {{- with .Values.cassandra -}}
+    {{- if . -}}
+      {{- if .liquibase -}}
+        {{ .default "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe" .liquibase.image }}
+      {{- else -}} 
+        "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe"
+      {{- end -}}
+    {{- else -}}
+      "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe"
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 {{/*
 Generate the name of the secret used to hold Cassandra authentication data for this service.
@@ -32,10 +42,12 @@ Generate the name of the secret used to hold Cassandra authentication data for t
 {{- end }}
 
 {{- define "cassandra.resources" -}}
+{{- if .Values.cassandra -}}
 {{- if .Values.cassandra.enabled -}}
 {{ include "cassandra.auth.secret" . }}
 {{ include "cassandra.setup.job" . }}
 {{ include "cassandra.schema.job" . }}
 {{ include "cassandra.teardown.job" . }}
 {{ end -}}
+{{- end -}}
 {{- end -}}
