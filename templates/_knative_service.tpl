@@ -1,15 +1,34 @@
 {{- define "containerPort" -}}
-{{ .Values.probes.liveness.port | default "8080" }}
+{{ .Values.containerPort | default "8080" }}
 {{- end }}
 
 {{- define "probes.liveness.path" -}}
-{{ .Values.probes.liveness.path | default "/healthz" | quote }}
-{{- end }}
-
+  {{- with .Values.probes -}}
+    {{- if . -}}
+      {{- if .liveness -}}
+        {{ .default "/healthz" .liveness.path }}
+      {{- else -}} 
+        "/healthz"
+      {{- end -}}
+    {{- else -}}
+      "/healthz"
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 {{- define "probes.readiness.path" -}}
-{{ .Values.probes.readiness.path | default "/healthz" | quote }}
-{{- end }}
+  {{- with .Values.probes -}}
+    {{- if . -}}
+      {{- if .readiness -}}
+        {{ .default "/healthz" .readiness.path }}
+      {{- else -}} 
+        "/healthz"
+      {{- end -}}
+    {{- else -}}
+      "/healthz"
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 {{- define "knative.service" -}}
 apiVersion: serving.knative.dev/v1
@@ -41,6 +60,7 @@ spec:
         env:
         - name: DEBUG
           value: "{{ .Values.global.debug }}"
+        {{- if .Values.keycloak }}
         {{- if .Values.keycloak.clientSuffix }}
         - name: KEYCLOAK_CLIENT_ID
           value: {{ .Release.Namespace }}-{{ .Values.keycloak.clientSuffix }}
@@ -48,6 +68,7 @@ spec:
           value: {{ .Release.Namespace }}-realm
         - name: KEYCLOAK_URL
           value: https://keycloak.{{ .Values.global.domain }}/auth
+        {{ end -}}
         {{ end -}}
         ports:
         - containerPort: {{ include "containerPort" . }}
