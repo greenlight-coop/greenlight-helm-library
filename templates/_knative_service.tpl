@@ -41,6 +41,14 @@ spec:
         env:
         - name: DEBUG
           value: "{{ .Values.global.debug }}"
+        {{- if .Values.keycloak.clientSuffix }}
+        - name: KEYCLOAK_CLIENT_ID
+          value: {{ .Release.Namespace }}-{{ .Values.keycloak.clientSuffix }}
+        - name: KEYCLOAK_REALM
+          value: {{ .Release.Namespace }}-realm
+        - name: KEYCLOAK_URL
+          value: https://keycloak.{{ .Values.global.domain }}/auth
+        {{ end -}}
         ports:
         - containerPort: {{ include "containerPort" . }}
         livenessProbe:
