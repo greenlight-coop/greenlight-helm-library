@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: liquibase
-        image: {{ .Values.cassandra.liquibase.image }}
+        image: {{ include "cassandra.liquibase.image" . }}
         command: ["/bin/sh"]
         args:
           - -c
