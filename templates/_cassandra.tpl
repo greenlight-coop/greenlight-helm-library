@@ -19,6 +19,7 @@ Generate the name of the Cassandra keyspace and role name.
 
 {{/*
 Retrieve the image identifier used to run Liquibase jobs.
+*/}}
 {{- define "cassandra.liquibase.image" -}}
   {{- with .Values.cassandra -}}
     {{- if . -}}
@@ -31,10 +32,6 @@ Retrieve the image identifier used to run Liquibase jobs.
       "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe"
     {{- end -}}
   {{- end -}}
-{{- end -}}
-*/}}
-{{- define "cassandra.liquibase.image" -}}
-  docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe
 {{- end -}}
 
 {{/*
