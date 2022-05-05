@@ -1,6 +1,13 @@
 {{- define "uri.prefix" -}}
-{{ .Values.uri.prefix | default print "/api/" (include "service.name" .) | quote }}
-{{- end }}
+  {{- with .Values.uri -}}
+    {{- if . -}}
+      {{ .Values.uri.prefix | default print "/api/" (include "service.name" .) | quote }}
+    {{- else -}}
+      {{ default print "/api/" (include "service.name" .) | quote }}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 
 {{- define "istio.virtualservice" -}}
 apiVersion: networking.istio.io/v1beta1
