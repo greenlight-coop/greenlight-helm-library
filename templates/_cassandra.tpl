@@ -24,7 +24,7 @@ Retrieve the image identifier used to run Liquibase jobs.
   {{- with .Values.cassandra -}}
     {{- if . -}}
       {{- if .liquibase -}}
-        {{ .default "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe" .liquibase.image }}
+        {{ default "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe" .liquibase.image }}
       {{- else -}} 
         "docker.io/greenlightcoop/cassandra-liquibase:0.1.5@sha256:93af22f41fe3926b36191f84e87f79a97b6b203a41eedde06fff141b7d59acfe"
       {{- end -}}

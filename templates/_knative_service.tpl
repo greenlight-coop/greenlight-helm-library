@@ -6,7 +6,7 @@
   {{- with .Values.probes -}}
     {{- if . -}}
       {{- if .liveness -}}
-        {{ .default "/healthz" .liveness.path }}
+        {{ default "/healthz" .liveness.path }}
       {{- else -}} 
         "/healthz"
       {{- end -}}
@@ -20,7 +20,7 @@
   {{- with .Values.probes -}}
     {{- if . -}}
       {{- if .readiness -}}
-        {{ .default "/healthz" .readiness.path }}
+        {{ default "/healthz" .readiness.path }}
       {{- else -}} 
         "/healthz"
       {{- end -}}
