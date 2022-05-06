@@ -32,15 +32,15 @@ spec:
           - name: SERVICE_USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ include "cassandra.auth.secret.name" . }}
+                name: {{ include "cassandra.auth.secret.name" . | quote }}
                 key: username
           - name: SERVICE_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ include "cassandra.auth.secret.name" . }}
+                name: {{ include "cassandra.auth.secret.name" . | quote }}
                 key: password
           - name: SERVICE_KEYSPACE
-            value: {{ include "cassandra.keyspace" . }}
+            value: {{ include "cassandra.keyspace" . | quote }}
           - name: SUPERUSER_USERNAME
             valueFrom:
               secretKeyRef:
