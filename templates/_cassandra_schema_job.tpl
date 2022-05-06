@@ -33,19 +33,19 @@ spec:
           - name: SERVICE_USERNAME
             valueFrom:
               secretKeyRef:
-                name: {{ include "cassandra.auth.secret.name" . }}
+                name: {{ include "cassandra.auth.secret.name" . | quote }}
                 key: username
           - name: SERVICE_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ include "cassandra.auth.secret.name" . }}
+                name: {{ include "cassandra.auth.secret.name" . | quote }}
                 key: password
           - name: CASSANDRA_DOMAIN
-            value: {{ include "cassandra.domain" . }}
+            value: {{ include "cassandra.domain" . | quote }}
           - name: CASSANDRA_PORT
-            value: {{ include "cassandra.port" . }}
+            value: {{ include "cassandra.port" . | quote }}
           - name: SERVICE_KEYSPACE
-            value: {{ include "cassandra.keyspace" . }}
+            value: {{ include "cassandra.keyspace" . | quote }}
         volumeMounts:
         - name: templates
           mountPath: "/liquibase/templates"
