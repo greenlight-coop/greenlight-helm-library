@@ -21,3 +21,7 @@
 .idea/
 *.tmproj
 .vscode/
+# Project files
+package-lock.json
+package.json
+.npmrc
