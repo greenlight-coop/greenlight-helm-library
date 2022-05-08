@@ -22,7 +22,7 @@ spec:
           - >
             mkdir -p /liquibase/processed \
               && for file in /liquibase/templates/*; do envsubst < $file > /liquibase/processed/${file##*/}; done \
-              && cqlsh \
+              && cqlsh --request-timeout="600" \
               --no-color \
               --username=$SUPERUSER_USERNAME \
               --password=$SUPERUSER_PASSWORD \
