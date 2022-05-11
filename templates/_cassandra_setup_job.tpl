@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ .Release.Namespace }}-{{ include "service.name" . }}-cassandra-setup
-  namespace: default
+  namespace: k8ssandra-operator
   annotations:
     helm.sh/hook: pre-install
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
