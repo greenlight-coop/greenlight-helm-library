@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: {{ include "cassandra.auth.secret.name" . }}
-  namespace: default
+  namespace: k8ssandra-operator
   annotations:
     secret-generator.v1.mittwald.de/autogenerate: password
     helm.sh/hook: pre-install
