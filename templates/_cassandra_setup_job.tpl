@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: {{ .Release.Namespace }}-{{ include "service.name" . }}-cassandra-setup
   annotations:
-    helm.sh/hook: pre-install
+    helm.sh/hook: pre-install,pre-upgrade
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
     helm.sh/hook-weight: "1"
   labels:
