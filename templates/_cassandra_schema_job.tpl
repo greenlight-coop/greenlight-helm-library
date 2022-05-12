@@ -11,6 +11,9 @@ metadata:
     {{- include "service.labels" . | nindent 4 }}
 spec:
   template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       containers:
       - name: liquibase
