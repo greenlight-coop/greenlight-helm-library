@@ -1,7 +1,7 @@
 {{/*
 Retrieve the domain (host) name used to access Cassandra.
 */}}{{- define "cassandra.domain" -}}
-{{ .Values.cassandra.domain | default "k8ssandra-dc1-service" }}
+{{ .Values.cassandra.domain | default "k8ssandra-dc1-service.k8ssandra-operator" }}
 {{- end }}
 
 {{/*
