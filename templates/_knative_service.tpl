@@ -72,8 +72,8 @@ spec:
           value: https://keycloak.{{ .Values.global.domain }}/auth
         {{- end }}
         {{- end }}
-        {{- if .Values.cassandra -}}
-        {{- if .Values.cassandra.enabled -}}
+        {{- if .Values.cassandra }}
+        {{- if .Values.cassandra.enabled }}
         - name: CASSANDRA_DOMAIN
           value: {{ include "cassandra.domain" . | quote }}
         - name: CASSANDRA_PORT
