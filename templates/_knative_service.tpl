@@ -72,6 +72,26 @@ spec:
           value: https://keycloak.{{ .Values.global.domain }}/auth
         {{- end }}
         {{- end }}
+        {{- if .Values.cassandra -}}
+        {{- if .Values.cassandra.enabled -}}
+        - name: CASSANDRA_DOMAIN
+          value: {{ include "cassandra.domain" . | quote }}
+        - name: CASSANDRA_PORT
+          value: {{ include "cassandra.port" . | quote }}
+        - name: CASSANDRA_KEYSPACE
+          value: {{ include "cassandra.keyspace" . | quote }}
+        - name: CASSANDRA_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "cassandra.auth.secret.name" . | quote }}
+              key: username
+        - name: CASSANDRA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "cassandra.auth.secret.name" . | quote }}
+              key: password
+        {{- end }}
+        {{- end }}
         ports:
         - containerPort: {{ include "containerPort" . }}
         livenessProbe:
