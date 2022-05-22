@@ -11,6 +11,12 @@ Retrieve the domain (host) name used to access Cassandra.
 {{- end }}
 
 {{/*
+Retrieve the domain (host) name used to access Cassandra.
+*/}}{{- define "cassandra.datacenter" -}}
+{{ .Values.cassandra.datacenter | default "dc1" }}
+{{- end }}
+
+{{/*
 Generate the name of the Cassandra keyspace and role name.
 */}}
 {{- define "cassandra.keyspace" -}}
