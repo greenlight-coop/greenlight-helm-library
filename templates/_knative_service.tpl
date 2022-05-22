@@ -74,6 +74,8 @@ spec:
         {{- end }}
         {{- if .Values.cassandra }}
         {{- if .Values.cassandra.enabled }}
+        - name: CASSANDRA_DATACENTER
+          value: {{ include "cassandra.datacenter" . | quote }}
         - name: CASSANDRA_DOMAIN
           value: {{ include "cassandra.domain" . | quote }}
         - name: CASSANDRA_PORT
