@@ -3,5 +3,5 @@ name: greenlight-helm-library
 description: Reusable templates, etc. for inclusion in Helm charts
 icon: https://www.greenlight.coop/assets/img/favicon.png
 type: library
-version: 0.1.21
-appVersion: 0.1.21
+version: 0.1.22
+appVersion: 0.1.22
