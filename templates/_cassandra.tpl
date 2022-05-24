@@ -20,7 +20,14 @@ Retrieve the domain (host) name used to access Cassandra.
 Generate the name of the Cassandra keyspace and role name.
 */}}
 {{- define "cassandra.keyspace" -}}
-{{- .Release.Namespace | replace "-" "_" }}_{{ include "service.name" . }}
+{{- .Release.Namespace | replace "-" "_" }}_{{ include "cassandra.deployedService" . }}
+{{- end }}
+
+{{/*
+The name of the deployed service accessing Cassandra.
+*/}}
+{{- define "cassandra.deployedService" -}}
+{{ .Values.cassandra.deployedService | default (include "service.name" .) }}
 {{- end }}
 
 {{/*
@@ -44,7 +51,7 @@ Retrieve the image identifier used to run Liquibase jobs.
 Generate the name of the secret used to hold Cassandra authentication data for this service.
 */}}
 {{- define "cassandra.auth.secret.name" -}}
-{{ .Release.Namespace }}-{{ .Values.cassandra.secretServiceName | default (include "service.name" .) }}-cassandra-auth
+{{ .Release.Namespace }}-{{ include "cassandra.deployedService" . }}-cassandra-auth
 {{- end }}
 
 {{- define "cassandra.resources" -}}
