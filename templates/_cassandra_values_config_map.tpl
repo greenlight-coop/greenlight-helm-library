@@ -10,7 +10,7 @@ metadata:
   labels:
     {{- include "service.labels" . | nindent 4 }}
 data:
-  replicationFactor: {{ .Values.global.cassandra.replicationFactor }}
+  replicationFactor: {{ .Values.global.cassandra.replicationFactor | quote }}
 
 ---
 {{- end -}}
