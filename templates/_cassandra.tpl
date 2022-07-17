@@ -61,6 +61,7 @@ Generate the name of the secret used to hold Cassandra authentication data for t
 {{ include "cassandra.setup.job" . }}
 {{ include "cassandra.schema.job" . }}
 {{ include "cassandra.teardown.job" . }}
+{{ include "cassandra.values.configmap" . }}
 {{ end -}}
 {{- end -}}
 {{- end -}}

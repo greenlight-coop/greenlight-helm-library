@@ -32,6 +32,11 @@ spec:
               --file=/liquibase/processed/cassandra-setup.cql \
               {{ include "cassandra.domain" . }}
         env:
+          - name: REPLICATION_FACTOR
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Namespace }}-{{ include "service.name" . }}-cassandra-values
+                key: replicationFactor
           - name: SERVICE_USERNAME
             valueFrom:
               secretKeyRef:
