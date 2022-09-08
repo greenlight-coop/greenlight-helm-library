@@ -1,19 +1,10 @@
 {{- define "uri.prefix" -}}
   {{- if .Values.uri -}}
-    {{ .Values.uri.prefix | default (print "/api/" (include "service.name" .)) | quote }}
-  {{- else -}}
-    {{ default (print "/api/" (include "service.name" .)) | quote }}
-  {{- end -}}
-{{- end -}}
-
-{{- define "uri.rewrite" -}}
-  {{- if .Values.uri -}}
-    {{ .Values.uri.rewrite | default (print "/" (include "service.name" .)) | quote }}
+    {{ .Values.uri.override | default (print "/" (include "service.name" .)) | quote }}
   {{- else -}}
     {{ default (print "/" (include "service.name" .)) | quote }}
   {{- end -}}
 {{- end -}}
-
 
 {{- define "istio.virtualservice" -}}
 apiVersion: networking.istio.io/v1beta1
@@ -35,7 +26,7 @@ spec:
     - uri:
         prefix: {{ include "uri.prefix" . }}
     rewrite:
-      uri: {{ include "uri.rewrite" . }}
+      uri: "/"
       authority: {{ include "service.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
     route:
     - destination:
