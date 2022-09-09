@@ -26,7 +26,7 @@ spec:
     - uri:
         prefix: {{ include "uri.prefix" . }}
     rewrite:
-      uri: "/"
+      uri: ""
       authority: {{ include "service.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
     route:
     - destination:
