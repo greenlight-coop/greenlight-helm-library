@@ -24,9 +24,11 @@ spec:
   http:
   - match:
     - uri:
-        prefix: {{ include "uri.prefix" . }}
+        prefix: "{{ include "uri.prefix" . }}/"
+    - uri:
+        prefix: "{{ include "uri.prefix" . }}"
     rewrite:
-      uri: ""
+      uri: "/"
       authority: {{ include "service.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
     route:
     - destination:
