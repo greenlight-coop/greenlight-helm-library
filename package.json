@@ -1,6 +1,6 @@
 {
   "name": "greenlight-helm-library",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "Reusable templates, etc. for inclusion in Helm charts",
   "scripts": {
     "lint": "failsafe noop",
