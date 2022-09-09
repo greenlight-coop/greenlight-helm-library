@@ -1,8 +1,8 @@
 {{- define "uri.prefix" -}}
   {{- if .Values.uri -}}
-    {{ .Values.uri.override | default (print "/" (include "service.name" .)) | quote }}
+    {{ .Values.uri.override | default (print "/" (include "service.name" .)) }}
   {{- else -}}
-    {{ default (print "/" (include "service.name" .)) | quote }}
+    {{ default (print "/" (include "service.name" .)) }}
   {{- end -}}
 {{- end -}}
 
