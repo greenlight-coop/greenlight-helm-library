@@ -62,6 +62,10 @@ spec:
         env:
         - name: DEBUG
           value: {{ .Values.global.debug | quote}}
+        - name: SERVICE_DOMAIN
+          value: {{ .Values.global.subdomain }}{{ if .Values.global.subdomain }}.{{ end }}{{ .Values.global.domain }}
+        - name: SERVICE_PATH
+          value: {{ include "uri.prefix" . }}
         {{- if .Values.keycloak }}
         {{- if .Values.keycloak.clientSuffix }}
         - name: KEYCLOAK_CLIENT_ID
