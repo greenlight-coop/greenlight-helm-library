@@ -11,7 +11,6 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: {{ include "service.fullname" . }}
-  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/component: rest-service
     app.kubernetes.io/part-of: greenlight-application

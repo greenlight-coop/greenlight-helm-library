@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Namespace }}-{{ include "service.name" . }}-cassandra-teardown
+  name: {{ include "service.name" . }}-cassandra-teardown
   annotations:
     helm.sh/hook: post-delete	
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
@@ -61,7 +61,7 @@ spec:
       volumes:
       - name: templates
         configMap:
-          name: {{ .Release.Namespace }}-{{ include "service.name" . }}-files
+          name: {{ include "service.name" . }}-files
       restartPolicy: Never
 
 ---
