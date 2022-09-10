@@ -27,7 +27,7 @@ Generate the name of the Cassandra keyspace and role name.
 The name of the deployed service accessing Cassandra.
 */}}
 {{- define "cassandra.deployedService" -}}
-{{ .Values.cassandra.deployedService | default (include "service.name" .) }}
+{{ .Values.cassandra.deployedService | default (include "service.basename" .) }}
 {{- end }}
 
 {{/*
