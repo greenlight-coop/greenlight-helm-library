@@ -68,3 +68,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Remove non-identifying strings from and truncate the Namespace to reduce it for use as a short identifier.
+*/}}
+{{- define "namespace.short-identifier" -}}
+{{- .Release.Namespace | replace "-service" "" | trunc 36 | trimSuffix "-" }}
+{{- end }}

@@ -68,9 +68,9 @@ spec:
         {{- if .Values.keycloak }}
         {{- if .Values.keycloak.clientSuffix }}
         - name: KEYCLOAK_CLIENT_ID
-          value: {{ .Release.Namespace }}-{{ .Values.keycloak.clientSuffix }}
+          value: {{ include "namespace.short-identifier" .}}-{{ .Values.keycloak.clientSuffix }}
         - name: KEYCLOAK_REALM
-          value: {{ .Release.Namespace }}-realm
+          value: {{ include "namespace.short-identifier" .}}-realm
         - name: KEYCLOAK_URL
           value: https://keycloak.{{ .Values.global.domain }}/auth
         {{- end }}
