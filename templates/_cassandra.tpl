@@ -51,7 +51,7 @@ Retrieve the image identifier used to run Liquibase jobs.
 Generate the name of the secret used to hold Cassandra authentication data for this service.
 */}}
 {{- define "cassandra.auth.secret.name" -}}
-{{ .Release.Namespace }}-{{ include "cassandra.deployedService" . }}-cassandra-auth
+{{ include "cassandra.deployedService" . }}-cassandra-auth
 {{- end }}
 
 {{- define "cassandra.resources" -}}

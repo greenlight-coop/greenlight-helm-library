@@ -35,7 +35,6 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: {{ include "service.fullname" . }}
-  namespace: {{ .Release.Namespace }}
 spec:
   template:
     metadata:

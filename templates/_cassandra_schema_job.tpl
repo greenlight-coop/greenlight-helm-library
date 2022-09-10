@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Namespace }}-{{ include "service.name" . }}-schema
+  name: {{ include "service.name" . }}-schema
   annotations:
     helm.sh/hook: pre-install,pre-upgrade
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
@@ -55,7 +55,7 @@ spec:
       volumes:
       - name: templates
         configMap:
-          name: {{ .Release.Namespace }}-{{ include "service.name" . }}-files
+          name: {{ include "service.name" . }}-files
       restartPolicy: Never
 
 ---

@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Namespace }}-{{ include "service.name" . }}-cassandra-setup
+  name: {{ include "service.name" . }}-cassandra-setup
   annotations:
     helm.sh/hook: pre-install,pre-upgrade
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
@@ -35,7 +35,7 @@ spec:
           - name: REPLICATION_FACTOR
             valueFrom:
               configMapKeyRef:
-                name: {{ .Release.Namespace }}-{{ include "service.name" . }}-cassandra-values
+                name: {{ include "service.name" . }}-cassandra-values
                 key: replicationFactor
           - name: SERVICE_USERNAME
             valueFrom:
@@ -66,7 +66,7 @@ spec:
       volumes:
       - name: templates
         configMap:
-          name: {{ .Release.Namespace }}-{{ include "service.name" . }}-files
+          name: {{ include "service.name" . }}-files
       restartPolicy: Never
 
 ---
