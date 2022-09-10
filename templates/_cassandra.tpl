@@ -20,7 +20,7 @@ Retrieve the domain (host) name used to access Cassandra.
 Generate the name of the Cassandra keyspace and role name.
 */}}
 {{- define "cassandra.keyspace" -}}
-{{- .Release.Namespace | replace "-" "_" }}_{{ include "cassandra.deployedService" . }}
+{{- print .Release.Namespace "_" (include "cassandra.deployedService" .) | replace "-" "_" }}
 {{- end }}
 
 {{/*
