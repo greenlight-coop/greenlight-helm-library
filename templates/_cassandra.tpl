@@ -37,12 +37,12 @@ Retrieve the image identifier used to run Liquibase jobs.
   {{- with .Values.cassandra -}}
     {{- if . -}}
       {{- if .liquibase -}}
-        {{ default "docker.io/greenlightcoop/cassandra-liquibase:0.1.6@sha256:99dc3c0e3cc00f22f393455517e51635b835b6e2f09fd98288060f81ca91978d" .liquibase.image }}
+        {{ default "docker.io/greenlightcoop/cassandra-liquibase:0.1.7@sha256:bd3daf4f2a24416701ceb133c3a367b0dde727be5485b9a24b20cd4a89f91ca5" .liquibase.image }}
       {{- else -}} 
-        "docker.io/greenlightcoop/cassandra-liquibase:0.1.6@sha256:99dc3c0e3cc00f22f393455517e51635b835b6e2f09fd98288060f81ca91978d"
+        "docker.io/greenlightcoop/cassandra-liquibase:0.1.7@sha256:bd3daf4f2a24416701ceb133c3a367b0dde727be5485b9a24b20cd4a89f91ca5"
       {{- end -}}
     {{- else -}}
-      "docker.io/greenlightcoop/cassandra-liquibase:0.1.6@sha256:99dc3c0e3cc00f22f393455517e51635b835b6e2f09fd98288060f81ca91978d"
+      "docker.io/greenlightcoop/cassandra-liquibase:0.1.7@sha256:bd3daf4f2a24416701ceb133c3a367b0dde727be5485b9a24b20cd4a89f91ca5"
     {{- end -}}
   {{- end -}}
 {{- end -}}
