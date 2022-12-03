@@ -25,3 +25,8 @@
 package-lock.json
 package.json
 .npmrc
+# Node
+package.json
+package-lock.json
+node_modules/
+.npmrc
